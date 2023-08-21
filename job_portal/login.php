@@ -61,8 +61,10 @@
         $l_rs=mysqli_query($conn,$l_qry);
         while($row=mysqli_fetch_array($l_rs)){
             session_start();
+            $_SESSION['id']=$row['id'];
             if($row['role']=='ADMIN-JOB REGISTER'){
                 $_SESSION["sid"]=$row['mail'];
+                
                 header("location:admin.php");
             }
             elseif($row['role']=='APPLICANT'){

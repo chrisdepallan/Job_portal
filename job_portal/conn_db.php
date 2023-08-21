@@ -1,4 +1,4 @@
 <?php
-    $conn = mysqli_connect("localhost","root",'',"job_portal") or
+    $conn = mysqli_connect("localhost","root",'',"emmanuel") or
     die("connection not established ");
 ?>
