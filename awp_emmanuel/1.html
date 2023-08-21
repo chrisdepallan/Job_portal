@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    axios({
+        method: 'POST',
+        url: 'postdata.php',
+        data: {
+          firstName: 'Fred'
+        }
+      })
+      .then((res) => {
+        console.log(res); // Log the response object for debugging
+      })
+      .catch((err) => {
+        console.log(err); // Log the full error object for debugging
+        console.log("An error occurred"); // Additional error message
+      });</script>
+</head>
+<body>
+  
+</body>
+</html>

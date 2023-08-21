@@ -1,0 +1,10 @@
+Nickname, main title, subtitle,twitterlink,facebook link,linkedin link,Full name,Phone,Email,Website,Address, about text 1,about text 2, work experience_title1,work experience_years1,work experience_title2,work experience_years2,work experience_title3,work experience_years3, education_title2,education_passout_years2,education_title32,education_passout_years4,education_passout_years4
+
+
+Array ( [id] => 1 [status] => active [nickname] => [main_title] =>
+ [full_name] => [phone] => [email] => [website] => [address] => [twitter_link] => [facebook_link] => 
+[linkedin_link] => [about_text_1] => [about_text_2] => 
+[work_experience_title_1] => [work_experience_years_1] => [work_experience_title_2] => 
+[work_experience_years_2] => [work_experience_title_3] => [work_experience_years_3] => 
+[education_title_1] => [education_passout_years_1] => [education_title_2] => 
+[education_passout_years_2] => )

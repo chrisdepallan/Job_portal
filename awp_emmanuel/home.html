@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+
+    <title>Document</title>
+    <link rel="'stylesheet" href="css/home.css">
+    <script>
+
+$(document).ready(function() {
+    // Attach a click event handler to the button
+    $("#submit").click(function() {
+        // Make an AJAX GET request to a JSON API
+          let name=document.getElementById("name").value;
+    let main_title=document.getElementById("title").value;
+    let sub_title=document.getElementById("Subtitle").value;
+    let about=document.getElementById("About").value;
+    let qualifications=document.getElementById("qualifications").value;
+        $.ajax({
+            url: "postdata.php", // Example JSON API URL
+            method: "POST",
+            data:{name:name},
+            // dataType: "json",
+            success: function(data) {
+                // Handle the response data
+               console.log(data);
+                $("#dataContainer").html("<h2>Data Received:</h2><pre>" + JSON.stringify(data, null, 2) + "</pre>");
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error: " + status + " - " + error);
+            }
+        });
+    });
+});
+// function def(){
+//   let name=document.getElementById("name").value;
+//   let main_title=document.getElementById("title").value;
+//   let sub_title=document.getElementById("Subtitle").value;
+//   let about=document.getElementById("About").value;
+//   let qualifications=document.getElementById("qualifications").value;
+//   // alert(name);
+ 
+//   axios({
+//   method: 'POST',
+//   url: 'postdata.php',
+//   data: {
+//     name:name, 
+//     main_title:main_title,
+//     sub_title:sub_title,
+//     about:about,
+//     qualifications:qualifications
+    
+//   },
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// })
+// .then((res) => {
+//   alert("successfull queried. please wait for filing");
+//   alert(res.value);
+//   console.log(res); // Log the response object for debugging
+// })
+// .catch((err) => {
+
+//   console.log(err); // Log the full error object for debugging
+//   console.log("An error occurred"); // Additional error message
+// });
+// } 
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Chris.</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Projects</a>
+            </li>
+         
+            <li class="nav-item">
+              <a class="nav-link " href="portfolio.html">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <form method="POST" action="postdata.php">
+          <!-- Personal Information -->
+          <h2>Personal Information</h2>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="nickname" class="form-label">Nickname</label>
+              <input type="text" class="form-control" name="nickname" id="nickname">
+            </div>
+            <div class="col-md-6">
+              <label for="main_title" class="form-label">Main Title</label>
+              <input type="text" class="form-control" name="main_title" id="main_title">
+            </div>
+          </div>
+          
+          <!-- Contact Information -->
+          <h2>Contact Information</h2>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="full_name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" name="full_name" id="full_name">
+            </div>
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" name="phone" id="phone">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" id="email">
+            </div>
+            <div class="col-md-6">
+              <label for="website" class="form-label">Website</label>
+              <input type="url" class="form-control" name="website" id="website">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" name="address" id="address">
+          </div>
+          
+          <!-- Social Media Links -->
+          <h2>Social Media Links</h2>
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label for="twitter_link" class="form-label">Twitter Link</label>
+              <input type="url" class="form-control" name="twitter_link" id="twitter_link">
+            </div>
+            <div class="col-md-4">
+              <label for="facebook_link" class="form-label">Facebook Link</label>
+              <input type="url" class="form-control" name="facebook_link" id="facebook_link">
+            </div>
+            <div class="col-md-4">
+              <label for="linkedin_link" class="form-label">LinkedIn Link</label>
+              <input type="url" class="form-control" name="linkedin_link" id="linkedin_link">
+            </div>
+          </div>
+          
+          <!-- About and Work Experience -->
+          <h2>About and Work Experience</h2>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="about_text_1" class="form-label">About Text 1</label>
+              <textarea class="form-control" name="about_text_1" id="about_text_1" rows="4"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="about_text_2" class="form-label">About Text 2</label>
+              <textarea class="form-control" name="about_text_2" id="about_text_2" rows="4"></textarea>
+            </div>
+          </div>
+          
+          <!-- Work Experience -->
+          <h2>Work Experience</h2>
+          <!-- You can repeat the similar structure for each work experience entry -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="work_experience_title_1" class="form-label">Work Experience Title 1</label>
+              <input type="text" class="form-control" name="work_experience_title_1" id="work_experience_title_1">
+            </div>
+            <div class="col-md-6">
+              <label for="work_experience_years_1" class="form-label">Work Experience Years 1</label>
+              <input type="text" class="form-control" name="work_experience_years_1" id="work_experience_years_1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="work_experience_title_1" class="form-label">Work Experience Title 2</label>
+              <input type="text" class="form-control" name="work_experience_title_2" id="work_experience_title_1">
+            </div>
+            <div class="col-md-6">
+              <label for="work_experience_years_1" class="form-label">Work Experience Years 2</label>
+              <input type="text" class="form-control" name="work_experience_years_2" id="work_experience_years_1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="work_experience_title_1" class="form-label">Work Experience Title 3</label>
+              <input type="text" class="form-control" name="work_experience_title_3" id="work_experience_title_1">
+            </div>
+            <div class="col-md-6">
+              <label for="work_experience_years_1" class="form-label">Work Experience Years 3</label>
+              <input type="text" class="form-control" name="work_experience_years_3" id="work_experience_years_1">
+            </div>
+          </div>
+          <!-- Repeat the above structure for additional work experience entries -->
+          
+          <!-- Education -->
+          <h2>Education</h2>
+          <!-- You can repeat the similar structure for each education entry -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="education_title_1" class="form-label">Education Title 1</label>
+              <input type="text" class="form-control" name="education_title_1" id="education_title_1">
+            </div>
+            <div class="col-md-6">
+              <label for="education_passout_years_1" class="form-label">Education Passout Years 1</label>
+              <input type="text" class="form-control" name="education_passout_years_1" id="education_passout_years_1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="education_title_1" class="form-label">Education Title 2</label>
+            <input type="text" class="form-control" name="education_title_2" id="education_title_1">
+          </div>
+          <div class="col-md-6">
+            <label for="education_passout_years_1" class="form-label">Education Passout Years 2</label>
+            <input type="text" class="form-control" name="education_passout_years_2" id="education_passout_years_1">
+          </div>
+          <div class="col-md-6">
+            <label for="education_title_1" class="form-label">Education Title 3</label>
+            <input type="text" class="form-control" name="education_title_3" id="education_title_1">
+          </div>
+          <div class="col-md-6">
+            <label for="education_passout_years_1" class="form-label">Education Passout Years 3</label>
+            <input type="text" class="form-control" name="education_passout_years_3" id="education_passout_years_1">
+          </div>
+          <!-- Repeat the above structure for additional education entries -->
+          <div class="mb-3">
+            <label for="user_image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" name="user_image" id="user_image">
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      
+</body>
+</html>
