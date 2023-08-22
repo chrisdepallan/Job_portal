@@ -13,7 +13,7 @@ session_start();
     <body>
     <?php 
     require "conn_db.php";
-    $fetch_jobs = "SELECT * FROM `jobs`";
+    $fetch_jobs = "SELECT * FROM `jobs` `status`='0'";
     $fetch_jobs_r = mysqli_query($conn,$fetch_jobs);
 ?>
     </body>
