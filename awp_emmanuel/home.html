@@ -122,7 +122,7 @@ $(document).ready(function() {
             </div>
             <div class="col-md-6">
               <label for="phone" class="form-label">Phone</label>
-              <input type="tel" class="form-control" name="phone" id="phone">
+              <input type="tel" class="form-control" name="phone" maxlength="10" id="phone">
             </div>
           </div>
           <div class="row mb-3">
@@ -235,10 +235,10 @@ $(document).ready(function() {
             <input type="text" class="form-control" name="education_passout_years_3" id="education_passout_years_1">
           </div>
           <!-- Repeat the above structure for additional education entries -->
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label for="user_image" class="form-label">Upload Image</label>
             <input type="file" class="form-control" name="user_image" id="user_image">
-          </div>
+          </div> -->
           <!-- Submit Button -->
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

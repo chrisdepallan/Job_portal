@@ -134,6 +134,8 @@ $sql = "INSERT INTO resume (
 
 if (mysqli_query($conn, $sql)) {
     echo "Data inserted successfully!";
+    $last_inserted_id = mysqli_insert_id($conn);
+    header("location:portfolio/index.php?id=$last_inserted_id");
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }

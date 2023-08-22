@@ -90,7 +90,7 @@ if ($result) {
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t js-fullheight">
 						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-							<div class="profile-thumb" style="background: url(images/portfolio.jpg);"></div>
+							<!-- <div class="profile-thumb" style="background: url(images/portfolio.jpg);"></div> -->
 							<h1><span><?php echo $resumeData["nickname"];?></span></h1>
 							<h3><span><?php  echo  $resumeData["main_title"]?></span></h3>
 							<p>

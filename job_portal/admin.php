@@ -26,6 +26,149 @@
                 border: 2px solid #28a745; /* Green color */
                 border-radius: 0.25rem; /* Rounded corners */
             }
+            <style>
+    /* Custom styles for the page */
+    body {
+        background: linear-gradient(90deg, #08203E 0%, #557C93 100%);
+    }
+
+    .card-outline-green {
+        border: 2px solid #28a745;
+        border-radius: 0.25rem;
+    }
+
+    .delete-btn {
+        margin-top: 10px;
+    }
+
+    .navbar {
+        background-color: #f8f9fa;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #333;
+    }
+
+    .offcanvas-header {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .offcanvas-body {
+        background-color: #f8f9fa;
+    }
+
+    hr.bg-yellow {
+        border-top-color: #ffc107;
+    }
+
+    .modal-content {
+        border: 2px solid #28a745;
+        border-radius: 0.25rem;
+    }
+
+    .modal-title {
+        color: #333;
+    }
+
+    .modal-dialog-scrollable .modal-content {
+        max-height: 80vh;
+    }
+
+    /* Override Bootstrap default card colors */
+    .card.bg-warning {
+        background-color: #ffc107;
+    }
+
+    /* Override Bootstrap default button colors */
+    .btn-secondary {
+        background-color: #333;
+        border-color: #333;
+    }
+
+    /* Add some margin to the bottom of the page */
+    body {
+        margin-bottom: 40px;
+    }
+    <style>
+    /* Custom styles for the page */
+    body {
+        background: linear-gradient(90deg, #FFD700 0%, #FF6347 100%);
+    }
+
+    .card-outline-green {
+        border: 2px solid #32CD32;
+        border-radius: 0.25rem;
+    }
+
+    .delete-btn {
+        margin-top: 10px;
+    }
+
+    .navbar {
+        background-color: #F08080;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #333;
+    }
+
+    .offcanvas-header {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .offcanvas-body {
+        background-color: #FFFAF0;
+    }
+
+    hr.bg-yellow {
+        border-top-color: #FF4500;
+    }
+
+    .modal-content {
+        border: 2px solid #32CD32;
+        border-radius: 0.25rem;
+    }
+
+    .modal-title {
+        color: #32CD32;
+    }
+
+    .modal-dialog-scrollable .modal-content {
+        max-height: 80vh;
+    }
+
+    /* Override Bootstrap default card colors */
+    .card.bg-warning {
+        background-color: #FFA500;
+    }
+
+    /* Override Bootstrap default button colors */
+    .btn-secondary {
+        background-color: #333;
+        border-color: #333;
+    }
+
+    /* Add some margin to the bottom of the page */
+    body {
+        margin-bottom: 40px;
+    }
+</style>
+
+</style>
+
         </style>
 		  <script>
 			if ( window.history.replaceState ) {
@@ -97,7 +240,7 @@
 
         <!-- job listings from this admin -->
         <div class="container mt-5">
-    <h2>Job Listings</h2>
+    <h2 style='color:white'>Job Listings</h2>
     <div class="row">
         <?php while ($jb_row = mysqli_fetch_array($fetch_jobs_r)) { ?>
             <div class="col-md-4 mb-4">
@@ -117,6 +260,70 @@
             </div>
         <?php } ?>
     </div>
+</div>
+
+<hr class="bg-yellow my-4">
+<!-- User Data Display -->
+<div class="container mt-5">
+    <h2 style='color:white'>Applications</h2>
+    <div class="row">
+        <?php
+        // Replace this with your database connection code
+        
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        // Query to fetch user data
+        // $query = "SELECT r.id, r.name, r.mail, r.pass, r.role
+        // FROM register AS r
+        // JOIN applications AS a ON r.id = a.userid";
+        $query='SELECT r.id AS register_id, r.name, r.mail, r.pass, r.role,
+        j.id AS job_id, j.job_title, j.company_name, j.location, j.job_description, j.job_type, j.application_deadline,
+        a.id AS application_id
+ FROM register r
+ JOIN applications a ON r.id = a.userid
+ JOIN jobs j ON a.jobid = j.id WHERE a.status = 0;
+ ';
+        $result = mysqli_query($conn, $query);
+        
+        // Loop through fetched user data
+        while ($user_row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $user_row['name']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $user_row['mail']; ?></h6>
+                        <p class="card-text"><strong>ID: <?php echo $user_row['register_id']; ?></strong></p>
+                        <p class="card-text"><strong>Role: <?php echo $user_row['role']; ?></strong></p>
+                        <!-- You can add more fields as needed -->
+                        <!-- <a class="btn btn-danger delete-btn" href="rejectuser.php?id=<?php echo $user_row['register_id']; ?>">
+                            Reject
+                        </a> -->
+                        <hr>
+                        <p class="card-text"><strong>Job Title: <?php echo $user_row['job_title']; ?></strong></p>
+                        <p class="card-text"><strong>Company: <?php echo $user_row['company_name']; ?></strong></p>
+                        <p class="card-text"><?php echo $user_row['job_description']; ?></p>
+                        <p class="card-text"><strong>Job Type: <?php echo $user_row['job_type']; ?></strong></p>
+                        <p class="card-text"><strong>Deadline: <?php echo $user_row['application_deadline']; ?></strong></p>
+                        <!-- <a class="btn btn-danger delete-btn" href="rejectjob.php?id=<?php echo $user_row['job_id']; ?>">
+                            Reject
+                        </a> -->
+                        <hr>
+                        <a class="btn btn-danger delete-btn" href="rejectuser.php?id=<?php echo $user_row['application_id']; ?>">
+                            Reject Application
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php
+            }
+            
+            // Close the connection
+            mysqli_close($conn);
+            ?>
 </div>
 
 

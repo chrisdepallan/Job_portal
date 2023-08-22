@@ -6,8 +6,8 @@ require "conn_db.php";
 // $conn = mysqli_connect("hostname", "username", "password", "database");
 $id=$_GET["id"];
 if ($conn) {
-    $update_query = "UPDATE `jobs` SET `status` = 1 WHERE `id`='$id'";
-    
+    $update_query = "UPDATE `applications` SET `status` = 1 WHERE `id`='$id'";
+    echo $update_query;    
     if (mysqli_query($conn, $update_query)) {
         echo "Status updated successfully.";
     } else {
@@ -19,6 +19,18 @@ if ($conn) {
     echo "Failed to connect to the database.";
 }
 
+
 header("location:admin.php");
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>Document</title>
+</head>
+<body>
+    dsadsadsadasdasdas
+</body>
+</html>
