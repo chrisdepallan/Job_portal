@@ -80,7 +80,7 @@
             </div>
         
             <!-- card to remove jobs from portal  -->
-            <div class="col-md-4 mb-4">
+            <!-- <div class="col-md-4 mb-4">
                 <div class="card" style="width: 25rem;">
                     <div class="card-body">
                         <h5 class="card-title">Remove a job </h5>
@@ -91,30 +91,34 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <hr class="bg-yellow my-4">
 
         <!-- job listings from this admin -->
         <div class="container mt-5">
-            <h2>Job Listings</h2>
-            <div class="row">
-             <?php while($jb_row = mysqli_fetch_array($fetch_jobs_r)) {?>
-                <div class="col-md-4 mb-4">
-                    <div class="card bg-warning">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $jb_row['job_title'];?></h5>
-                            <h6 class="card-subtitle mb-2 text-muted"><?php echo $jb_row['company_name'];?></h6>
-                            <p class="card-text"><?php echo $jb_row['location'];?></p>
-                            <p class="card-text"><?php echo $jb_row['job_description'];?></p>
-                            <p class="card-text"><strong>Job Type: <?php echo $jb_row['job_type'];?></strong></p>
-                            <p class="card-text"><strong>Deadline:</strong><?php echo $jb_row['application_deadline'];?></p>
-                        </div>
+    <h2>Job Listings</h2>
+    <div class="row">
+        <?php while ($jb_row = mysqli_fetch_array($fetch_jobs_r)) { ?>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $jb_row['job_title']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $jb_row['company_name']; ?></h6>
+                        <p class="card-text"><?php echo $jb_row['location']; ?></p>
+                        <p class="card-text"><?php echo $jb_row['job_description']; ?></p>
+                        <p class="card-text"><strong>Job Type: <?php echo $jb_row['job_type']; ?></strong></p>
+                        <p class="card-text"><strong>Deadline:</strong><?php echo $jb_row['application_deadline']; ?></p>
+                        <a class="btn btn-danger delete-btn" href="deletejob.php?id=<?php echo $jb_row['id']; ?>">
+                            Delete
+                        </a>
                     </div>
                 </div>
-                <?php } ?>
             </div>
-        </div>
+        <?php } ?>
+    </div>
+</div>
+
 
         <!-- modal for adding job -->
         <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

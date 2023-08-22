@@ -23,12 +23,15 @@ session_start();
             <div class="row">
              <?php while($jb_row = mysqli_fetch_array($fetch_jobs_r)) {
 
-                $id1=$_SESSION["id"];
-                $fetch_apps = "SELECT * FROM `applications` where `userid`=$id1";
-                $fetch_apps_r = mysqli_query($conn,$fetch_apps);
-                while($apps_row = mysqli_fetch_array($fetch_apps_r)){
-                     if($apps_row['jobid']!=$jb_row['id']){ $str="Apply for the job";}else{$str= "already applied";} 
-                }
+$id1 = $_SESSION["id"];
+$fetch_apps = "SELECT * FROM `applications` WHERE `userid` = $id1 AND `jobid` = {$jb_row['id']}";
+$fetch_apps_r = mysqli_query($conn, $fetch_apps);
+
+if (mysqli_num_rows($fetch_apps_r) > 0) {
+    $str = "already applied";
+} else {
+    $str = "Apply for the job";
+}
                 ?>
                 
                 <div class="col-md-4 mb-4">
